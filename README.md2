@@ -1,1 +1,186 @@
+Jenkins Assignment - 02
+Topics: User Authentication & User Authorization
+📌 Overview
 
+This project demonstrates Jenkins security configuration, including:
+
+User Authentication (creating multiple users)
+User Authorization (role-based access control)
+Job segregation based on teams
+Implementation of different Jenkins authorization strategies
+Google SSO integration for admin user
+🏢 Organization Structure
+
+The organization is divided into 3 teams:
+
+👨‍💻 Developer Team
+⚙️ DevOps Team
+🧪 Testing Team
+
+Each team has restricted or controlled access based on roles.
+
+🧱 Part 1: Jenkins Jobs Setup
+📌 Job Requirements
+
+Create 9 Jenkins freestyle jobs, each printing:
+
+Job Name
+Build Number
+💻 Developer Jobs
+dev-1
+dev-2
+dev-3
+
+📍 Visible only to Developer view (and partially to others based on role rules)
+
+🧪 Testing Jobs
+test-1
+test-2
+test-3
+
+📍 Visible in Testing view
+
+⚙️ DevOps Jobs
+devops-1
+devops-2
+devops-3
+
+📍 Visible in DevOps view
+
+📸 Screenshot Section (Jobs Creation)
+
+Add screenshots here:
+
+### 📷 Jenkins Dashboard with Jobs
+> Insert screenshot of all 9 jobs list
+
+### 📷 Developer Jobs View
+> Insert screenshot showing dev-1, dev-2, dev-3
+
+### 📷 Testing Jobs View
+> Insert screenshot showing test jobs
+
+### 📷 DevOps Jobs View
+> Insert screenshot showing devops jobs
+👥 User Creation
+👨‍💻 Developer Users
+Username	Full Name	Email
+dev-alpha	Alpha Developer	alpha.dev@gmail.com
+dev-beta	Beta Developer	beta.dev@gmail.com
+🧪 Testing Users
+Username	Full Name	Email
+qa-alpha	QA Alpha	qa.alpha@gmail.com
+qa-beta	QA Beta	qa.beta@gmail.com
+⚙️ DevOps Users
+Username	Full Name	Email
+ops-alpha	Operations Alpha	ops.alpha@gmail.com
+ops-beta	Operations Beta	ops.beta@gmail.com
+🛡️ Admin User
+Username	Full Name	Email
+super-admin	System Administrator	sysadmin@gmail.com
+📸 Screenshot Section (User Creation)
+### 📷 Create User Screen
+> Screenshot of Jenkins "Create User" page
+
+### 📷 Developer Users Created
+> Screenshot showing dev-alpha, dev-beta
+
+### 📷 Testing Users Created
+> Screenshot showing qa users
+
+### 📷 DevOps Users Created
+> Screenshot showing ops users
+
+### 📷 Admin User Created
+> Screenshot showing super-admin user
+🔐 Authorization Strategy Implementation
+🧠 Strategies Explored
+1. Legacy Mode
+Old Jenkins security model
+Not role-based
+❌ Not recommended
+2. Project-Based Matrix Authorization
+Permissions defined per project
+Useful for small setups
+Limited scalability
+3. Matrix-Based Security
+Global + project-level permissions
+Fine-grained control
+Complex to manage
+4. Role-Based Authorization (Recommended)
+Uses roles like:
+Developer
+DevOps
+Testing
+Admin
+Clean and scalable
+Easy to maintain
+✅ Implemented Strategy
+
+👉 Role-Based Authorization Strategy (Recommended Plugin: Role Strategy Plugin)
+
+📸 Screenshot Section (Authorization)
+### 📷 Authorization Strategy Configuration
+> Screenshot of Role-Based Strategy settings
+
+### 📷 Role Assignment Page
+> Screenshot showing roles mapped to users
+
+### 📷 Folder/View Restrictions
+> Screenshot showing access control per role
+🔑 Permissions Summary
+👨‍💻 Developer Role
+View dev jobs only
+Build jobs
+View workspace
+Configure jobs
+🧪 Testing Role
+View test jobs
+View dev jobs
+Build jobs
+Configure jobs
+Workspace access
+⚙️ DevOps Role
+View dev + test + devops jobs
+Full build access
+Configure jobs
+Workspace access
+🛡️ Admin Role
+Full access to Jenkins
+Manage users
+Manage jobs
+Configure system
+🔐 Part 2: Google SSO Integration
+🌐 Objective
+
+Enable Google Single Sign-On (SSO) for the admin user.
+
+⚙️ Steps Implemented
+Installed Google OAuth Plugin
+Configured Google Cloud Console credentials
+Set:
+Client ID
+Client Secret
+Allowed domain authentication
+Assigned admin access to Google user
+📸 Screenshot Section (SSO)
+### 📷 Google OAuth Configuration
+> Screenshot of Jenkins security settings
+
+### 📷 Google Cloud Console Setup
+> Screenshot of OAuth credentials page
+
+### 📷 Login via Google
+> Screenshot showing "Sign in with Google"
+
+### 📷 Admin Access After SSO Login
+> Screenshot of Jenkins dashboard after login
+📌 Conclusion
+
+This project demonstrates:
+
+Jenkins user management
+Role-based access control
+Job segregation by teams
+Security best practices
+External authentication via Google SSO
