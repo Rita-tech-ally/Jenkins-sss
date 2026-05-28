@@ -1,0 +1,119 @@
+🧑‍💻 Jenkins Freestyle CI Checks - Assignment 03
+
+This project demonstrates Continuous Integration (CI) checks on multiple repositories using Jenkins Freestyle Jobs, including report generation, artifact management, and automated failure notifications.
+
+📌 Overview
+
+The goal of this assignment is to:
+
+Perform CI checks on three repositories (Python, GoLang, Java)
+Configure Jenkins Freestyle Jobs for each repo
+Implement Generic & Advanced CI Checks such as:
+Unit Testing
+Code Coverage
+Dependency Analysis
+Credential Scanning
+Store reports in Jenkins
+Manage build artifacts locally or remotely
+Configure notifications via Email, Slack, or Telegram on failures
+⚙️ Tools & Technologies
+Jenkins Freestyle Jobs
+GitHub Repositories
+Python / GoLang / Java Build Tools
+Jenkins Plugins:
+JUnit / xUnit
+Cobertura / JaCoCo (Code Coverage)
+Artifact Management
+Slack / Email Notification Plugins
+Linux (Ubuntu/CentOS)
+Slack / Email / Telegram for notifications
+🚀 Target Repositories
+Language	Repository URL
+Python	https://github.com/OT-MICROSERVICES/attendance-api
+GoLang	https://github.com/OT-MICROSERVICES/employee-api
+Java	https://github.com/opstree/spring3hibernate.git
+🛠️ Jenkins Freestyle Jobs Setup
+1️⃣ Python Repository Job
+Configuration
+Job Type: Freestyle Project
+Source Code Management: Git → Python repo
+Build Steps:
+Install dependencies (pip install -r requirements.txt)
+Run Unit Tests (pytest --junitxml=report.xml)
+Run Static Analysis / Linting (flake8 .)
+Credential / Security Scanning (e.g., bandit -r .)
+Reports & Artifacts
+Store report.xml as JUnit report
+Save logs or test reports as artifacts
+📸 Screenshots
+Job Configuration Screen → [Insert Image 1]
+Console Output / Test Report → [Insert Image 2]
+2️⃣ GoLang Repository Job
+Configuration
+Job Type: Freestyle Project
+Source Code Management: Git → GoLang repo
+Build Steps:
+Install dependencies (go mod tidy)
+Run Unit Tests (go test ./... -v -coverprofile=coverage.out)
+Static Analysis (golangci-lint run)
+Reports & Artifacts
+Code coverage report stored in Jenkins
+Build logs archived as artifacts
+📸 Screenshots
+Job Configuration Screen → [Insert Image 3]
+Test Output / Coverage Report → [Insert Image 4]
+3️⃣ Java Repository Job
+Configuration
+Job Type: Freestyle Project
+Source Code Management: Git → Java repo
+Build Steps:
+Maven Build (mvn clean install)
+Unit Testing (mvn test)
+Code Coverage (mvn jacoco:report)
+Dependency / Vulnerability Scan (mvn dependency-check:check)
+Reports & Artifacts
+Test and coverage reports stored in Jenkins
+Build artifacts archived locally or remotely
+📸 Screenshots
+Job Configuration Screen → [Insert Image 5]
+Maven Build & Test Output → [Insert Image 6]
+📦 Artifacts & Reports Management
+Store CI reports and build artifacts in Jenkins workspace
+Optionally, configure remote storage (NFS, S3, or shared server)
+Access artifacts through Jenkins “Build Artifacts” section
+🔔 Notifications
+
+Configure failure notifications using:
+
+Slack: Alerts in dedicated channel
+Email: Jenkins SMTP configuration
+Telegram: Webhook notifications (optional)
+Notification Scenarios
+Event	Notification Type
+Build Fail	Slack + Email + Telegram
+Build Pass	Optional Success Notification
+📸 Screenshots
+Slack Notification Example → [Insert Image 7]
+Email Notification Example → [Insert Image 8]
+🔗 CI Job Flow Diagram
+Python Job → GoLang Job → Java Job
+          ↓
+      Slack / Email / Telegram Notifications
+
+Jobs are independent Freestyle Jobs but can be chained if required.
+
+✅ Best Practices Implemented
+Separate Freestyle Jobs per repository
+CI Checks include Unit Tests, Linting, Security & Coverage
+Artifacts stored and accessible via Jenkins
+Failures trigger real-time notifications
+Reports provide visibility into CI health
+📌 Conclusion
+
+This project demonstrates:
+
+CI automation using Jenkins Freestyle Jobs
+Multi-language repository integration (Python, GoLang, Java)
+Artifact & report management
+Advanced CI checks for quality assurance
+Notification system for failure alerts
