@@ -1,0 +1,108 @@
+# 🖥️ Jenkins Distributed Build Setup - Assignment 04
+
+This project demonstrates **Jenkins distributed builds using multiple agents/nodes**, executor management, and job assignment strategies with **time-based execution control**.
+
+---
+
+# 📌 Overview
+
+This assignment covers:
+
+- Configuring Jenkins nodes (Ubuntu, RHEL, CentOS)
+- Setting up SSH-based and master-based agents
+- Managing executors for load distribution
+- Assigning nodes to specific Jenkins Freestyle Jobs
+- Implementing time-based execution (9 AM – 6 PM rule)
+- Master fallback execution outside business hours
+
+---
+
+# ⚙️ Tools & Technologies
+
+- Jenkins Freestyle Jobs  
+- Jenkins Master-Agent Architecture  
+- Ubuntu Linux Node  
+- RHEL Linux Node  
+- CentOS Linux Node  
+- SSH Agent Plugin  
+- Shell / Groovy scripting  
+
+---
+
+# 🚀 Node Configuration Summary
+
+| Node | Launch Method | Max Executors | Assigned Job |
+|------|--------------|--------------|--------------|
+| Ubuntu Node | Execute command on master | 5 | Assignment 1: Part 1 |
+| RHEL Node | SSH Launch Agent | 2 | Assignment 2: Part 2 |
+| CentOS Node | SSH Launch Agent | 3 | Assignment 3 |
+
+---
+
+# 🐧 1. Ubuntu Node Configuration
+
+## 🔧 Setup Steps
+- Node created in **Manage Jenkins → Nodes**
+- Launch method: Execute command on master
+- Executors set to: **5**
+- Label assigned: `assignment1_part1`
+
+## 📸 Screenshots
+
+![Ubuntu Node Configuration](images/ubuntu-node-config.png)
+
+![Ubuntu Executors Setup](images/ubuntu-executors.png)
+
+---
+
+# 🐪 2. RHEL Node Configuration
+
+## 🔧 Setup Steps
+- Node created with SSH-based agent
+- SSH credentials configured in Jenkins
+- Executors set to: **2**
+- Label assigned: `assignment2_part2`
+
+## 📸 Screenshots
+
+![RHEL Node SSH Setup](images/rhel-ssh-setup.png)
+
+![RHEL Executors Setup](images/rhel-executors.png)
+
+---
+
+# 🐧 3. CentOS Node Configuration
+
+## 🔧 Setup Steps
+- Node configured using SSH launch method
+- SSH credentials added in Jenkins
+- Executors set to: **3**
+- Label assigned: `assignment3`
+
+## 📸 Screenshots
+
+![CentOS Node Setup](images/centos-node-setup.png)
+
+![CentOS Executors Setup](images/centos-executors.png)
+
+---
+
+# ⏱️ Time-Based Job Execution Logic
+
+## 📌 Requirement
+
+- Jobs run between **9 AM – 6 PM → Assigned Nodes**
+- Jobs outside this time → Run on **Master Node**
+
+---
+
+## 🧠 Implementation Logic (Groovy)
+
+```groovy
+def hour = new Date().format("HH", TimeZone.getTimeZone("Asia/Kolkata")).toInteger()
+
+if (hour >= 9 && hour < 18) {
+    println("Running on assigned node")
+} else {
+    println("Running on master node")
+}
