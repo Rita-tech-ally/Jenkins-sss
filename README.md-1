@@ -1,0 +1,139 @@
+🧑‍💻 Jenkins Freestyle CI/CD Project (Assignment 1)
+
+This project demonstrates automation using Jenkins Freestyle Jobs for Git operations, file creation, and deployment with integrated notifications using Slack and Email.
+
+📌 Overview
+
+The assignment is divided into two parts:
+
+Part 1: Git branch automation using Jenkins Freestyle Job
+Part 2: Parameterized file creation and web deployment using chained Jenkins Freestyle Jobs
+
+All jobs include:
+
+Automated execution
+Error handling
+Slack notifications
+Email notifications
+⚙️ Tools Used
+Jenkins (Freestyle Jobs)
+Git / Git Bash
+Linux (Ubuntu/CentOS)
+Apache Web Server
+Slack Webhook Integration
+SMTP Email Service
+🚀 Part 1: Git Branch Automation (Freestyle Job)
+🎯 Objective
+
+Automate Git operations using Jenkins Freestyle Job.
+
+🔧 Job Configuration
+Job Type: Freestyle Project
+Source Code Management: Git
+Build Step: Execute Shell
+🧠 Operations Performed
+
+The Jenkins job performs:
+
+Create a branch
+List all branches
+Merge branches
+Rebase branches
+Delete a branch
+📜 Shell Script Used
+git checkout -b feature-branch
+git branch
+git checkout main
+git merge feature-branch
+git rebase feature-branch
+git branch -d feature-branch
+📸 Screenshots (IMPORTANT)
+
+👉 Add screenshot here of Freestyle Job Configuration in Jenkins
+
+📍 (Jenkins Dashboard → Job Configuration Page)
+
+📸 [Insert Image 1: Jenkins Job Setup Screen]
+
+👉 Add screenshot of Console Output (Successful Run)
+
+📸 [Insert Image 2: Console Output - Git Operations]
+
+👉 Add screenshot of Slack Notification
+
+📸 [Insert Image 3: Slack Success/Failure Alert]
+
+👉 Add screenshot of Email Notification
+
+📸 [Insert Image 4: Email Alert Screenshot]
+
+🚀 Part 2: Parameterized File + Web Deployment (Freestyle Jobs)
+🎯 Objective
+
+Create a file using Jenkins parameter and publish it using a web server.
+
+🧩 Job 1: File Creation Job
+🔹 Configuration
+Job Type: Freestyle Project
+Parameter: String → Ninja Name
+🧠 Task Performed
+
+Creates a file and adds content:
+
+<Ninja Name> from DevOps Ninja
+📜 Shell Script
+echo "${NINJA_NAME} from DevOps Ninja" > ninja.txt
+📸 Screenshots
+
+👉 Jenkins parameter configuration
+
+📸 [Insert Image 5: Build Parameter Setup Screen]
+
+👉 Console output of file creation
+
+📸 [Insert Image 6: File Created Output]
+
+🧩 Job 2: Web Server Deployment Job
+🔹 Configuration
+Job Type: Freestyle Project
+Trigger: Build after Job 1 (Upstream Job)
+🧠 Task Performed
+Copies file to web server directory
+Publishes content on browser
+📜 Shell Script
+sudo cp ninja.txt /var/www/html/index.html
+sudo systemctl restart apache2
+📸 Screenshots
+
+👉 Job trigger configuration (Upstream/Downstream)
+
+📸 [Insert Image 7: Jenkins Job Trigger Setup]
+
+👉 Web server output in browser
+
+📸 [Insert Image 8: Browser Output - Deployed Page]
+
+🔗 Job Flow Diagram
+Job 1 (Create File with Parameter)
+          ↓ (Success)
+Job 2 (Deploy on Web Server)
+          ↓
+Slack + Email Notifications
+🚨 Notifications Setup
+On Failure:
+Slack alert (error stage)
+Email alert (build failure details)
+On Success:
+Slack success message
+Email success confirmation
+📌 Conclusion
+
+This project successfully demonstrates:
+
+Jenkins Freestyle Job automation
+Git branch operations
+Parameterized builds
+Web deployment using Apache
+CI/CD job chaining
+Slack & Email notifications
+
