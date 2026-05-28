@@ -1,139 +1,114 @@
-🧑‍💻 Jenkins Freestyle CI/CD Project (Assignment 1)
+# 🖥️ Jenkins Freestyle Job Automation - Assignment 01
 
-This project demonstrates automation using Jenkins Freestyle Jobs for Git operations, file creation, and deployment with integrated notifications using Slack and Email.
+This project demonstrates the creation and management of **Jenkins Freestyle Jobs** for basic Git operations and file publishing automation with Slack and Email notifications.
 
-📌 Overview
+---
 
-The assignment is divided into two parts:
+# 📌 Overview
 
-Part 1: Git branch automation using Jenkins Freestyle Job
-Part 2: Parameterized file creation and web deployment using chained Jenkins Freestyle Jobs
+The assignment is divided into **two parts**:
 
-All jobs include:
+**Part 1:**  
+Jenkins job to manage Git operations and notify failures via Slack & Email.  
 
-Automated execution
-Error handling
-Slack notifications
-Email notifications
-⚙️ Tools Used
-Jenkins (Freestyle Jobs)
-Git / Git Bash
-Linux (Ubuntu/CentOS)
-Apache Web Server
-Slack Webhook Integration
-SMTP Email Service
-🚀 Part 1: Git Branch Automation (Freestyle Job)
-🎯 Objective
+**Part 2:**  
+Two Jenkins jobs for file creation and publishing using a web server, with dependency and notification setup.
 
-Automate Git operations using Jenkins Freestyle Job.
+---
 
-🔧 Job Configuration
-Job Type: Freestyle Project
-Source Code Management: Git
-Build Step: Execute Shell
-🧠 Operations Performed
+# ⚙️ Tools & Technologies
 
-The Jenkins job performs:
+- Jenkins Freestyle Jobs  
+- Git Version Control  
+- Slack Notification Plugin  
+- Email Notification Plugin  
+- Linux / Windows Build Nodes  
+- Web Server for file publishing  
 
-Create a branch
-List all branches
-Merge branches
-Rebase branches
-Delete a branch
-📜 Shell Script Used
-git checkout -b feature-branch
-git branch
-git checkout main
-git merge feature-branch
-git rebase feature-branch
-git branch -d feature-branch
-📸 Screenshots (IMPORTANT)
+---
 
-👉 Add screenshot here of Freestyle Job Configuration in Jenkins
+# 🚀 Part 1: Git Operations Job
 
-📍 (Jenkins Dashboard → Job Configuration Page)
+## Job Description
 
-📸 [Insert Image 1: Jenkins Job Setup Screen]
+The Jenkins Freestyle Job performs the following Git operations:
 
-👉 Add screenshot of Console Output (Successful Run)
+1. Create a new branch  
+2. List all branches  
+3. Merge one branch with another  
+4. Rebase one branch with another  
+5. Delete a branch  
 
-📸 [Insert Image 2: Console Output - Git Operations]
+**Failure Handling:**  
+- If any step fails, Slack and Email notifications are triggered.
 
-👉 Add screenshot of Slack Notification
+---
 
-📸 [Insert Image 3: Slack Success/Failure Alert]
+## 📸 Screenshots
 
-👉 Add screenshot of Email Notification
+- Job Configuration → **[Insert Image: git-job-config.png]**  
+- Console Output → **[Insert Image: git-job-console.png]**  
+- Slack Notification → **[Insert Image: git-slack-notification.png]**  
+- Email Notification → **[Insert Image: git-email-notification.png]**  
 
-📸 [Insert Image 4: Email Alert Screenshot]
+---
 
-🚀 Part 2: Parameterized File + Web Deployment (Freestyle Jobs)
-🎯 Objective
+# 🚀 Part 2: File Creation & Publishing
 
-Create a file using Jenkins parameter and publish it using a web server.
+## Job 1: Create File
 
-🧩 Job 1: File Creation Job
-🔹 Configuration
-Job Type: Freestyle Project
-Parameter: String → Ninja Name
-🧠 Task Performed
+### Job Description
 
-Creates a file and adds content:
+- Takes **input parameter**: `<Ninja Name>`  
+- Creates a file  
+- Adds content: `"<Ninja Name> from DevOps Ninja"`  
 
-<Ninja Name> from DevOps Ninja
-📜 Shell Script
-echo "${NINJA_NAME} from DevOps Ninja" > ninja.txt
-📸 Screenshots
+### 📸 Screenshots
 
-👉 Jenkins parameter configuration
+- Job Configuration → **[Insert Image: create-file-job-config.png]**  
+- Console Output → **[Insert Image: create-file-console.png]**  
 
-📸 [Insert Image 5: Build Parameter Setup Screen]
+---
 
-👉 Console output of file creation
+## Job 2: Publish File Content
 
-📸 [Insert Image 6: File Created Output]
+### Job Description
 
-🧩 Job 2: Web Server Deployment Job
-🔹 Configuration
-Job Type: Freestyle Project
-Trigger: Build after Job 1 (Upstream Job)
-🧠 Task Performed
-Copies file to web server directory
-Publishes content on browser
-📜 Shell Script
-sudo cp ninja.txt /var/www/html/index.html
-sudo systemctl restart apache2
-📸 Screenshots
+- Reads the file created in Job 1  
+- Publishes its content via a **web server**  
+- Job is **triggered automatically** after Job 1 completes successfully  
+- Slack and Email notifications sent on failure or success  
 
-👉 Job trigger configuration (Upstream/Downstream)
+### 📸 Screenshots
 
-📸 [Insert Image 7: Jenkins Job Trigger Setup]
+- Job Configuration → **[Insert Image: publish-job-config.png]**  
+- Console Output → **[Insert Image: publish-job-console.png]**  
+- Slack Notification → **[Insert Image: publish-slack.png]**  
+- Email Notification → **[Insert Image: publish-email.png]**  
 
-👉 Web server output in browser
+---
 
-📸 [Insert Image 8: Browser Output - Deployed Page]
+# 🔗 Job Triggering & Notification Flow
 
-🔗 Job Flow Diagram
-Job 1 (Create File with Parameter)
-          ↓ (Success)
-Job 2 (Deploy on Web Server)
-          ↓
-Slack + Email Notifications
-🚨 Notifications Setup
-On Failure:
-Slack alert (error stage)
-Email alert (build failure details)
-On Success:
-Slack success message
-Email success confirmation
+```text
+Job 1: Create File
+       ↓
+Job 2: Publish File Content
+       ↓
+Slack & Email Notifications
+
+Key Features Implemented
+Git automation via Jenkins Freestyle Job
+File creation & content management
+Automated job triggering (Job 2 after Job 1)
+Slack & Email notifications for failures and successes
+Freestyle job configuration for easy reproducibility
 📌 Conclusion
 
-This project successfully demonstrates:
+This assignment demonstrates:
 
-Jenkins Freestyle Job automation
-Git branch operations
-Parameterized builds
-Web deployment using Apache
-CI/CD job chaining
-Slack & Email notifications
-
+Building Freestyle Jobs for automation
+Managing Git operations from Jenkins
+Implementing dependency between jobs
+Enabling Slack & Email notifications for CI monitoring
+Publishing files to a web server in an automated and structured
