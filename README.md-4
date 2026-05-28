@@ -106,3 +106,20 @@ if (hour >= 9 && hour < 18) {
 } else {
     println("Running on master node")
 }
+
+✅ Key Features Implemented
+Multi-node Jenkins architecture
+SSH-based agent configuration
+Executor-based load control
+Label-based job assignment
+Time-based execution control
+Master fallback strategy
+📌 Conclusion
+
+This assignment demonstrates real-world Jenkins distributed build system design, including:
+
+Agent provisioning
+Load balancing using executors
+Job-to-node mapping
+Time-based execution policies
+Reliable master fallback execution
