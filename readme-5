@@ -1,0 +1,133 @@
+# 🛠️ Jenkins Declarative CI Pipeline - Assignment 05
+
+This project demonstrates the implementation of a **Declarative Jenkins CI pipeline** for a Java project, featuring parallel stages, report generation, artifact publishing, notifications, and approval gates.
+
+---
+
+# 📌 Overview
+
+The assignment covers:
+
+- Creating a **Declarative Pipeline** for a Java project
+- Checkout of source code from Git
+- Parallel execution of **CI analysis stages**:
+  1. Code Stability Check
+  2. Code Quality Analysis
+  3. Code Coverage Analysis
+- Generating and publishing reports
+- Artifact management
+- Slack & Email notifications for success/failure
+- Optional user-controlled skipping of scans
+- Approval gate before publishing artifacts
+- Optional: Implementing the same in a **Scripted Pipeline**
+
+---
+
+# ⚙️ Tools & Technologies
+
+- Jenkins Declarative Pipeline  
+- Java Build Tools: Maven / Gradle  
+- Jenkins Plugins:  
+  - **Pipeline Plugin**  
+  - **JUnit / xUnit**  
+  - **Cobertura / JaCoCo** (Code Coverage)  
+  - **Static Code Analysis Plugins** (SonarQube / Checkstyle / PMD)  
+  - Slack Notification Plugin  
+  - Email Notification Plugin  
+- GitHub / Git Repository  
+
+---
+
+# 🚀 Pipeline Stages
+
+## 1️⃣ Code Checkout
+
+- Pull the latest code from the repository
+- Use `git checkout` and workspace clean-up before build
+
+### 📸 Screenshot
+
+![Code Checkout Stage](images/code-checkout.png)
+
+---
+
+## 2️⃣ Parallel CI Analysis
+
+The pipeline executes the following stages **in parallel**:
+
+### 🔹 a) Code Stability Check
+- Run unit tests, verify build integrity
+- Failures halt the pipeline if not skipped
+
+### 🔹 b) Code Quality Analysis
+- Run static code analysis tools (Checkstyle, PMD)
+- Generate quality reports
+
+### 🔹 c) Code Coverage Analysis
+- Run tests with coverage tool (JaCoCo / Cobertura)
+- Produce coverage reports in Jenkins
+
+### 📸 Screenshots
+
+- Parallel execution overview → **[Insert Image: parallel-stage.png]**
+- Sample code quality report → **[Insert Image: code-quality-report.png]**
+- Sample code coverage report → **[Insert Image: coverage-report.png]**
+
+---
+
+## 3️⃣ Artifact Publishing
+
+- Artifacts generated from the build are archived in Jenkins workspace
+- Optional remote storage configuration
+- **Approval stage** before publishing:
+  - Users can **Approve / Deny**
+  - Notifications sent based on approval outcome
+
+### 📸 Screenshots
+
+- Approval stage prompt → **[Insert Image: approval-stage.png]**
+- Artifact publishing console → **[Insert Image: artifact-publish.png]**
+
+---
+
+## 4️⃣ Notifications
+
+### ✅ On Success
+- Slack notification
+- Email notification
+
+### ❌ On Failure
+- Slack alert
+- Email alert with error details
+
+### 📸 Screenshots
+
+- Slack notification → **[Insert Image: slack-success.png]**
+- Email notification → **[Insert Image: email-failure.png]**
+
+---
+
+# 🧩 Optional: Scripted Pipeline
+
+- Same pipeline logic can be implemented using **Scripted Pipeline syntax**  
+- Maintains parallel stages, approval, artifact publishing, and notifications
+
+### 📸 Screenshot
+
+- Scripted Pipeline console output → **[Insert Image: scripted-pipeline.png]**
+
+---
+
+# 🔗 Pipeline Flow Diagram
+
+```text
+Code Checkout
+       ↓
+Parallel Execution
+   ┌───────────┬─────────────┬─────────────┐
+   │ Stability │ Code Quality│ Code Coverage│
+   └───────────┴─────────────┴─────────────┘
+       ↓
+ Approval Stage → Approve → Publish Artifacts
+                    ↓
+           Slack & Email Notification
